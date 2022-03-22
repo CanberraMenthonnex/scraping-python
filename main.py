@@ -49,7 +49,6 @@ class Scraper(object):
             color_table[color[1]] = color[3]
         return color_table
 
-
     def get_champions(self, content):
         champ_table = {}
         champs_tr = content.find(class_='article-table').tbody.find_all('tr')
@@ -69,9 +68,7 @@ class Scraper(object):
         ul = content.find(class_="columntemplate").ul.find_all("li")
         for li in ul:
             data.append(li.text)
-        return(data)
-
-
+        return data
 
     def get_all_data(self):
         content = self.get_content()
@@ -85,6 +82,7 @@ class Scraper(object):
             "Scrapped_champions": self.get_list_scrapped_champions(content),
         }
         return self.data
+
 
 if __name__ == "__main__":
     page = Scraper(r'https://leagueoflegends.fandom.com/wiki/List_of_champions').get_all_data()
